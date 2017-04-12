@@ -16,11 +16,9 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-animate.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-aria.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-messages.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-mocks.js',
         'app/*.js',
         'test/*.js'

@@ -9,20 +9,33 @@
     <title>Weather</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.css" rel="stylesheet">
     <link href="app/style.css" rel="stylesheet">
 
 </head>
 
 <body ng-app="app" ng-controller="WeatherController">
 
-<div id="citiesListBox">
-    You are now in <strong>{{cities[0].name}}</strong> - The number of cities to show: <input type="number" min="1" max="50" maxlength="4" ng-model="numberCities"> <br/>
-    Please click on the city near your city that you want to show weather information! <br/>
-    <label ng-repeat="city in cities">
-        <input type="checkbox" name="selectCities[]" value="{{city.id}}" ng-checked="selection.indexOf(city.id) > -1" ng-click="toggleSelection(city.id)" /> {{city.name}}
-    </label>
-</div>
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">Weather</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link">
+                    Number of cities: <input type="number" min="1" max="50" maxlength="4" ng-model="numberCities">
+                </a>
+            </li>
+            <li class="nav-item">
+                <label ng-repeat="city in cities">
+                    <input type="checkbox" name="selectCities[]" value="{{city.id}}" ng-checked="selection.indexOf(city.id) > -1" ng-click="toggleSelection(city.id)" />
+                    <span class="text-white">{{city.name}}</span> &nbsp;
+                </label>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <div class="card" ng-repeat="(index, city) in cities" ng-show="selection.indexOf(city.id) != -1" title="{{city.weather[0].description}} - Humidity: {{city.main.humidity}}%">
     <div>{{city.name}}</div>
@@ -34,28 +47,22 @@
     </table>
 </div>
 
-<!--<md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>-->
-    <!--<md-card-title>-->
-        <!--<md-card-title-text>-->
-            <!--<span class="md-headline">Card with image</span>-->
-            <!--<span class="md-subhead">Large</span>-->
-        <!--</md-card-title-text>-->
-        <!--<md-card-title-media>-->
-            <!--<div class="md-media-lg card-media"></div>-->
-        <!--</md-card-title-media>-->
-    <!--</md-card-title>-->
-    <!--<md-card-actions layout="row" layout-align="end center">-->
-        <!--<md-button>Action 1</md-button>-->
-        <!--<md-button>Action 2</md-button>-->
-    <!--</md-card-actions>-->
-<!--</md-card>-->
+<div class="text-center text-primary" ng-show="loading">
+    loading ...
+    <div>
+        <label>●</label>
+        <label>●</label>
+        <label>●</label>
+        <label>●</label>
+        <label>●</label>
+        <label>●</label>
+    </div>
+</div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-animate.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-aria.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-messages.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.js"></script>
 
 <script type="text/javascript" src="app/app.js"></script>
 

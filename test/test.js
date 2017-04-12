@@ -1,4 +1,4 @@
-describe('test', function() {
+describe('WeatherTest', function() {
     var $controller, $compile, $scope;
 
     beforeEach(module('app'));
@@ -10,67 +10,30 @@ describe('test', function() {
         $compile = _$compile_;
     }));
 
+    describe('Default Value', function() {
+        it('should return the number of cities and standard current location', function() {
+            var controller = $controller('WeatherController', {$scope: $scope});
+            // show name of 5 nearest cities
+            expect($scope.numberCities).toBe(5);
 
-    describe('sum', function() {
-        it('1 + 1 should equal 2', function() {
-            var $scope = {};
-            var controller = $controller('WeatherController', { $scope: $scope });
-
-            $scope.x = 1;
-            $scope.y = 2;
-            $scope.sum();
-
-            expect($scope.z).toBe(3);
+            // standard location is Berlin if browser can not find current location
+            expect($scope.currentPositionLat).toBe(52.5243700);
+            expect($scope.currentPositionLon).toBe(13.4105300);
         });
-
-
-        // it('should render div with id header', function() {
-        //         var html = '<div id="header">{{selectedZipcode}}</div>';
-        //         var elem = angular.element(html);  // turn html into an element object
-        //         $compile(elem)($scope); // compile the html
-        //         $scope.$digest();  // update the scope
-        //         expect(elem.text()).toBe($scope.selectedZipcode);  //test to see if it was updated.
-        // });
-
     });
 
-    describe('sum2', function() {
+    describe('Render Element', function() {
+        it('should render at least one checkbox and one card', function() {
+            var controller = $controller('WeatherController', {$scope: $scope});
 
-        it('2 + 2 should equal 4', function() {
-            var $scope = {};
-            var controller = $controller('WeatherController', { $scope: $scope });
+            var checkboxElm = $compile('<input type="checkbox" name="selectCities[]">')($scope);
+            expect(checkboxElm.length).toBe(1);
 
-            $scope.x = 2;
-            $scope.y = 2;
-            $scope.sum();
-
-            expect($scope.z).toBe(4);
+            var cardElm = $compile('<div class="card">')($scope);
+            expect(cardElm.length).toBe(1);
         });
 
     });
 
-    describe('render', function() {
-
-        it('should at least one card show', function() {
-
-            //var $scope = {};
-
-            var controller = $controller('WeatherController', { $scope: $scope });
-
-            var body = angular.element('<body></body>');
-            var elem = angular.element('<div id="header"></div>');
-
-            elem = $compile(elem)($scope);
-            $scope.zipcodes = [{"zipcode":10178,"location":"Berlin","id":1111},{"zipcode":10179,"location":"Berlin","id":1112},{"zipcode":10245,"location":"Berlin","id":1113},{"zipcode":10247,"location":"Berlin","id":1114}];
-            $scope.$digest();
-
-            //console.log(body.find('.card').is(':visible'));
-            console.log(elem.html());
-
-            //expect($('.card').length).toBe(1);
-
-        });
-
-    });
 
 });
