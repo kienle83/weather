@@ -9,6 +9,9 @@ app.controller('WeatherController', function($scope, $http) {
     $scope.currentPositionLat = 52.5243700;
     $scope.currentPositionLon = 13.4105300;
 
+    $scope.apiUrl   = 'http://api.openweathermap.org/data/2.5/find';
+    $scope.apiAppId = '86c0d18157e569c9f812762726a999b4';
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             $scope.currentPositionLat = position.coords.latitude;
@@ -40,7 +43,7 @@ app.controller('WeatherController', function($scope, $http) {
          * units metrics: Celsius (temperature)
          */
         $scope.loading = true;
-        $http.get('http://api.openweathermap.org/data/2.5/find?lat='+positionLat+'&lon='+positionLon+'&cnt='+numberCities+'&units=metric&appid=86c0d18157e569c9f812762726a999b4').then(function(response) {
+        $http.get($scope.apiUrl + '?lat='+positionLat+'&lon='+positionLon+'&cnt='+numberCities+'&units=metric&appid=' + $scope.apiAppId).then(function(response) {
             $scope.cities = response.data.list;
             if ($scope.cities) {
                 $scope.defaultCity = $scope.cities[0].id;
@@ -60,7 +63,7 @@ app.controller('WeatherController', function($scope, $http) {
             $scope.$watch('numberCities', function(newValue, oldValue) {
                 if (newValue != oldValue) {
                     $scope.loading = true;
-                    $http.get('http://api.openweathermap.org/data/2.5/find?lat='+positionLat+'&lon='+positionLon+'&cnt='+newValue+'&units=metric&appid=86c0d18157e569c9f812762726a999b4').then(function(response) {
+                    $http.get($scope.apiUrl + '?lat='+positionLat+'&lon='+positionLon+'&cnt='+newValue+'&units=metric&appid=' + $scope.apiAppId).then(function(response) {
                         $scope.cities = response.data.list;
                     }, function() {
                         $scope.loading = false;
@@ -78,6 +81,5 @@ app.controller('WeatherController', function($scope, $http) {
         });
 
     }
-
 
 });

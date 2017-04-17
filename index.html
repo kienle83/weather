@@ -27,7 +27,7 @@
                     Number of cities: <input type="number" min="1" max="50" maxlength="4" ng-model="numberCities">
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item cities-list">
                 <label ng-repeat="city in cities">
                     <input type="checkbox" name="selectCities[]" value="{{city.id}}" ng-checked="selection.indexOf(city.id) > -1" ng-click="toggleSelection(city.id)" />
                     <span class="text-white">{{city.name}}</span> &nbsp;
@@ -38,7 +38,7 @@
 </nav>
 
 <div class="card" ng-repeat="(index, city) in cities" ng-show="selection.indexOf(city.id) != -1" title="{{city.weather[0].description}} - Humidity: {{city.main.humidity}}%">
-    <div>{{city.name}}</div>
+    <div id="card-cityName">{{city.name}}</div>
     <table>
         <tr>
             <td><img ng-src="http://openweathermap.org/img/w/{{city.weather[0].icon}}.png"></td>

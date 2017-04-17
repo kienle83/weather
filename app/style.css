@@ -17,11 +17,11 @@ body {
 }
 
 .card {
-    width: 150px;
+    width: 170px;
     height: 100px;
-    color: #333;
     font-family: "Helvetica Neue";
     font-size: 24px;
+    color: #333;
     box-shadow: 0 0 8px 0 #ccc;
     box-sizing: border-box;
     padding: 12px;
